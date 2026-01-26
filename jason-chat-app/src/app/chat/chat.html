@@ -1,0 +1,122 @@
+<div
+  class="bg-gray-900 text-white h-screen w-screen flex items-center justify-center sm:p-4 font-sans"
+>
+  <div
+    class="flex flex-col w-full max-w-2xl h-full sm:max-h-[90%] bg-gray-800 sm:rounded-3xl shadow-2xl overflow-hidden"
+  >
+    <!-- Header -->
+    <header class="flex items-center p-4 border-b border-gray-700">
+      <i class="bi bi-chat-dots-fill text-teal-600 text-3xl md:text-4xl mr-4"></i>
+      <div>
+        <h1 class="text-xl md:text-2xl font-bold text-white">Jason AI Chat</h1>
+        <p class="text-sm md:text-base text-gray-400">Your AI assistant</p>
+      </div>
+    </header>
+
+    <!-- Chat History -->
+    <main #chatContainer class="flex-grow p-4 overflow-y-auto scroll-smooth">
+      <div class="flex flex-col space-y-4">
+        <!-- no history found -->
+        @if (history().length === 0 && !loading()) {
+        <div class="flex justify-center items-center h-full">
+          <p class="text-gray-500">Start the conversation by typing a message below.</p>
+        </div>
+        }
+
+        <!-- Chat messages -->
+        @for (item of history(); track $index) {
+        <div
+          class="flex flex-col"
+          [class.self-end]="item?.sender === 'user'"
+          [class.self-start]="item.sender !== 'user'"
+          [class.items-end]="item?.sender === 'user'"
+          [class.items-start]="item.sender !== 'user'"
+        >
+          <p
+            [class.text-teal-400]="item?.sender === 'user'"
+            [class.text-gray-400]="item?.sender !== 'user'"
+            [class.me-3]="item?.sender === 'user'"
+            [class.ms-3]="item?.sender !== 'user'"
+            class="mb-1 text-xs"
+          >
+            @if(item?.sender === 'user') {
+              You
+            } @else {
+              @if(item?.modelName) {
+              {{ item?.modelName }}
+              } @else {
+                Jarvis Bot
+              }
+            }
+          </p>
+          <!-- <div
+            class="max-w-xs md:max-w-md lg:max-w-2xl px-4 py-3 rounded-2xl"
+            [class.bg-teal-600]="item?.sender === 'user'"
+            [class.bg-gray-700]="item?.sender !== 'user'"
+          > -->
+
+          <div
+            class="max-w-xs md:max-w-md lg:max-w-[85%] px-4 py-3 rounded-2xl"
+            [class.bg-teal-600]="item?.sender === 'user'"
+            [class.bg-gray-700]="item?.sender !== 'user'"
+          >
+
+            <p
+              class="text-sm"
+              [class.whitespace-pre-wrap]="item?.sender === 'bot'">
+              {{ item?.message }}
+            </p>
+          </div>
+        </div>
+        }
+
+        <!-- Bot is typing indicator -->
+        @if (loading()) {
+        <div class="flex justify-start">
+          <div class="max-w-xs md:max-w-md lg:max-w-2xl  animate-pulse">
+            <div class="flex items-center">
+              <span class="text-xs text-gray-400 ms-3">Bot is typing...</span>
+              <span class="w-2 h-2 bg-teal-400 rounded-full ml-2 animate-pulse delay-100"></span>
+              <span class="w-2 h-2 bg-teal-400 rounded-full ml-1 animate-pulse delay-200"></span>
+              <span class="w-2 h-2 bg-teal-400 rounded-full ml-1 animate-pulse delay-300"></span>
+            </div>
+            <!-- Skeleton text -->
+            <div class="mt-2 space-y-2 p-3 rounded-2xl bg-gray-700">
+              <div class="h-2 bg-gray-600 rounded w-3/4"></div>
+              <div class="h-2 bg-gray-600 rounded w-1/2"></div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </main>
+
+    <!-- Input Form -->
+    <footer class="p-4 border-t border-gray-700">
+      <form (ngSubmit)="sendMessage()" class="flex items-center space-x-2 md:space-x-4">
+        <input
+          type="text"
+          [ngModel]="message()"
+          (ngModelChange)="message.set($event)"
+          name="message"
+          class="flex-grow bg-gray-700 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50"
+          placeholder="Type your message..."
+          [disabled]="loading()"
+        />
+        <button
+          type="submit"
+          class="bg-teal-600 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:bg-teal-600/50 disabled:cursor-not-allowed"
+          [disabled]="loading() || !message()"
+        >
+          <i class="bi bi-send-fill"></i>
+        </button>
+      </form>
+
+      @if (error()) {
+      <p class="text-red-400 text-sm mt-2 text-center">
+        {{ error() }}
+      </p>
+      }
+    </footer>
+  </div>
+</div>
