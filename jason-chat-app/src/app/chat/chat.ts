@@ -83,11 +83,11 @@ export class Chat {
       };
 
       // Simulate bot response after a short delay
-      setTimeout(() => {
-        // Add bot message to history
-        this.history.update((currentHistory) => [...currentHistory, newBotMessage]);
-        this.loading.set(false);
-      }, 1500);
+      // setTimeout(() => {
+      //   // Add bot message to history
+      //   this.history.update((currentHistory) => [...currentHistory, newBotMessage]);
+      //   this.loading.set(false);
+      // }, 1500);
 
       // Add bot message to history
       this.history.update((currentHistory) => [...currentHistory, newBotMessage]);

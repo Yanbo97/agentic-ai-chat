@@ -1,0 +1,44 @@
+.modern-ai-logo {
+	--logo-size: 2.5rem;
+	position: relative;
+	width: var(--logo-size);
+	height: var(--logo-size);
+	background: transparent;
+}
+
+.modern-ai-logo .arm {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 46%;
+	height: 24%;
+	border: 2px solid #14b8a6;
+	border-radius: 9999px;
+	transform-origin: 0% 50%;
+	translate: -10% -50%;
+}
+
+.modern-ai-logo .arm-1 {
+	transform: rotate(0deg);
+}
+
+.modern-ai-logo .arm-2 {
+	transform: rotate(60deg);
+}
+
+.modern-ai-logo .arm-3 {
+	transform: rotate(120deg);
+}
+
+.modern-ai-logo .arm-4 {
+	transform: rotate(180deg);
+}
+
+.modern-ai-logo .arm-5 {
+	transform: rotate(240deg);
+}
+
+.modern-ai-logo .arm-6 {
+	transform: rotate(300deg);
+}
+
