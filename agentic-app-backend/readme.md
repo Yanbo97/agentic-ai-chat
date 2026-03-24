@@ -51,7 +51,7 @@ It supports tool-using conversations, Retrieval-Augmented Generation (RAG), and 
 
 ## Example Flowchart
 
-![RAG Pipeline Example](docs/rag-flow-example.jpg)
+![RAG Pipeline Example](docs/flowchart.jpg)
 
 ## Demo Screenshots
 
