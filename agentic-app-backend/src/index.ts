@@ -4,8 +4,8 @@ import chatRoutes from './routes/chat.route.ts';
 import customerRoutes from './routes/customer.route.ts';
 import orderRoutes from './routes/order.route.ts';
 import weatherRoutes from './routes/weather.route.ts';
-// import mcpRoutes from './routes/mcp-server.route.ts';
-// import agentRoutes from './routes/agent.route.ts';
+import mcpRoutes from './routes/mcp-server.route.ts';
+import agentRoutes from './routes/agent.route.ts';
 
 // Create Express app
 const app = express();
@@ -20,15 +20,15 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use('/api/chat', chatRoutes);
+app.use('/api/chatWithLLM', chatRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/weather', weatherRoutes);
 
-// app.use('/api/chat', agentRoutes);
+app.use('/api/chat', agentRoutes);
 
 // mount mcp server on /mcp route
-// app.use('/mcp', mcpRoutes);
+app.use('/mcp', mcpRoutes);
 
 // Start server
 const PORT: number = Number(process.env.PORT) || 3000;

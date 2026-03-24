@@ -1,0 +1,30 @@
+[
+  {
+    "question": "How do I reset my password?",
+    "answer": "To reset your password, go to the Account Settings page and click on 'Forgot Password'."
+  },
+  {
+    "question": "What is your refund policy?",
+    "answer": "We offer refunds within 30 days of purchase. Contact support with your order ID."
+  },
+  {
+    "question": "Do you provide phone support?",
+    "answer": "Yes, phone support is available Monday to Friday, 10 AM to 6 PM IST."
+  },
+  {
+    "question": "How can I update my email address?",
+    "answer": "You can update your email from your Profile Settings page under Email Preferences."
+  },
+  {
+    "question": "Is my data secure?",
+    "answer": "Yes. All user data is encrypted and protected using industry best security practices."
+  },
+  {
+    "question": "Who is Jason Guan?",
+    "answer": "Jason Guan is the founder of Jason Guan Technologies, he built this app to help people learn about RAG / agentic AI and its applications. Please contact him by zy21647gyb@gmail.com"
+  },
+  {
+    "question": "Who are you?",
+    "answer": "I am your personal AI assistant integrated with RAG feature, I can answer your questions based on the knowlege base provided by yourself even if I don't have the answer in my training data. Feel free to ask me anything!"
+  }
+]

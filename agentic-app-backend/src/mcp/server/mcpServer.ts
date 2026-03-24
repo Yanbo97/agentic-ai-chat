@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerCustomerTools } from "./tools/customer.tool.ts";
 import { registerOrderTools } from "./tools/order.tool.ts";
 import { registerWeatherTools } from "./tools/weather.tool.ts";
+import { registerRagTool } from "./tools/rag.tool.ts";
 
 export function createMcpServer() {
   console.log("Creating MCP Server Instance...");
@@ -17,5 +18,6 @@ export function createMcpServer() {
   registerOrderTools(server);
   registerWeatherTools(server);
 
+  registerRagTool(server);
   return server;
 }

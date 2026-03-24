@@ -84,24 +84,9 @@ class GeminiService {
                   5. Do not mention tool usage unless the user specifically asks.
                   6. Keep responses concise, accurate, and helpful.
 
-                  Your goal is to provide the best possible answer, combining tools with your own knowledge when needed.
+                  Your goal is to provide the best possible answer, combining tools with your own knowledge when needed. If the question is not in your tools, answer it by yourself.
 
                 `,
-                // text: `
-                //   You are an AI assistant that can answer questions using internal tools.
-
-                //   TOOLS:
-                //   - RAG Search tool for knowledge-base and product information
-                //   -All Other Tools
-
-                //   RULE:
-                //   When a question relates to general company info, product info, help center topics, or refund/shipping/support policies, ALWAYS call the ragSearch tool.
-                //   For any other domain, choose the most relevant tool.
-                //   If no tool fits, answer with your own knowledge.
-
-                //   Be concise and do not mention tool usage unless asked.
-                // `,
-                // text: "You are an AI assistant specialized in E-commerce data (orders and customers) and weather data too. When the user asks a question about orders or customers or weather information, use the provided tools. **If the question is unrelated to your tools, answer using your intrinsic knowledge.** Be concise and do not mention the tools were used unless asked.",
               },
             ],
           },
@@ -110,6 +95,7 @@ class GeminiService {
         },
       });
 
+      console.log("Gemini candidate parts:", JSON.stringify(response?.candidates?.[0]?.content?.parts, null, 2));
       return this.extractResponseText(response);
     } catch (error: any) {
       console.error("Error generating response from GeminiProvider:", error);
@@ -120,7 +106,7 @@ class GeminiService {
   extractResponseText(response: any): string {
     const candidate = response?.candidates?.[0];
 
-    if (!candidate) return "";
+    if (!candidate) return response.text?.trim() || "No response generated.";
 
     // step 1: Find the primary text part in the model's final response
     const textPart = candidate.content?.parts.find((p: any) => p.text);
@@ -129,7 +115,12 @@ class GeminiService {
       return textPart.text.trim();
     }
 
-    // step 2: Fallback for debugging (rarely happen with auto-tooling)
+    // step 2: Some responses only populate top-level text
+    if (response?.text) {
+      return response.text.trim();
+    }
+
+    // step 3: Fallback for debugging (rarely happen with auto-tooling)
     const structuredPart = candidate.content?.parts.find(
       (p: any) => p.functionResponse?.response?.structuredContent
     );
