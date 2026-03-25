@@ -1,6 +1,6 @@
 # AI_CHAT_APP
 
-Monorepo-style workspace for multiple AI chat application implementations.
+This is demo AI agentic APP designed by Jason Guan Technologies.
 
 ## Project Overview
 
