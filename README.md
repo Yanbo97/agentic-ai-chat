@@ -63,9 +63,24 @@ Key highlights:
 4. Start backend service
 5. Start frontend from `jason-chat-app`
 
+## Update Log
+
+- `2026-03-29` (3.29): Agentic AI frontend updated for business-facing presentation UI.
+- `2026-03-29` (3.29): Product animation effects were refined for smoother and more polished interaction.
+
+## Final Interface Preview
+
+![Final Interface](docs/final_interface.png)
+
 ## Author
 
 Jason Guan  
 Jason Guan Technologies
+
+## Product Attribution
+
+This product is from Jason Guan Technologies.
+
+For more details, please contact: `jasonguantech@gmail.com`
 
 ## Notice: Please use your own Gemini/openAI API KEY and Weather API Key to run the code!
